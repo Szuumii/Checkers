@@ -1,3 +1,4 @@
+import React from "react"
 import Header from "./Components/Header"
 import GameContainer from './Components/GameContainter'
 import Footer from './Components/Footer'
@@ -8,7 +9,7 @@ function App() {
     <div className="App">
       <Header/>
       <GameContainer/>
-      <Footer/>
+      <Footer/> 
     </div>
   );
 }
