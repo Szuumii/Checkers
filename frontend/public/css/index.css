@@ -18,30 +18,60 @@ body {
   text-align: center;
 }
 
+.notifications {
+  margin: 2em;
+}
+
 .game-container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .board {
   display: grid;
-  margin: 2em;
+  margin-bottom: 2em;
   border: 1px solid black;
-  grid-template-rows: repeat(8, 70px);
-  grid-template-columns: repeat(8, 70px);
+  grid-template-rows: repeat(8, 5em);
+  grid-template-columns: repeat(8, 5em);
+}
+
+.white-piece,
+.white-king {
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.white-king {
+}
+
+.black-piece,
+.black-king {
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 50%;
+  background-color: black;
+  border: solid 2px white;
+}
+
+.black-king {
+}
+
+.field-black,
+.field-white {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .field-black {
-  margin: 0;
-  width: 70px;
-  height: 70px;
-  background-color: black;
+  background: black;
 }
 
 .field-white {
-  margin: 0;
-  width: 70px;
-  height: 70px;
-  background-color: white;
+  background: white;
 }
