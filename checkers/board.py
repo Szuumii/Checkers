@@ -66,6 +66,7 @@ class Board():
                     self.dark_left -= 1
 
     def winner(self):
+        # Check if pieces left has a place to move
         if self.light_left <= 0:
             return DARK
         elif self.dark_left <= 0:
