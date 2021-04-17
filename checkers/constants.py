@@ -1,0 +1,3 @@
+ROWS, COLS = 8, 8
+
+LIGHT, DARK = 1, 3
