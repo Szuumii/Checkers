@@ -1,23 +1,19 @@
 import React, {useState} from "react"
+import Field from "./Field"
+import {Ifield} from "../types"
+import { useGlobalContext } from "./context"
 
-import { InitialBoard } from "./data";
-import Field, { field } from "./Field"
+export default function Board() {
 
-function Board() {
+  const {board} = useGlobalContext();
 
-  const [board, setBoard] = useState(InitialBoard);
-
-  console.log(board);
+  // console.log(board);
 
   return(
     <div className="board">
-      {board.map((single_row) => {
-        return single_row.map((single_field: field) => {
-          return <Field key={single_field.key} value={single_field.value}/>
-        })
-    })}
+      {board.map((field: Ifield) => {
+        return <Field key={field.id.toString()} id={field.id} possible={field.possible} value={field.value}/>
+      })}
     </div>
   );
 }
-
-export default Board;

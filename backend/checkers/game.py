@@ -12,6 +12,13 @@ class Game:
     def show_board(self):
         self.board.print_board()
 
+    def get_board_state(self):
+        retv = []
+        for row in self.board.get_board_state():
+            for field in row:
+                retv.append(int(repr(field)))
+        return retv
+
     def _init(self):
         self.selected = None
         self.board = Board()
@@ -21,7 +28,7 @@ class Game:
     def resest(self):
         self._init()
 
-    def select_piece(self, row, col):
+    def select_piece(self, row, col) -> dict:
         self.selected = self.board.get_piece(row, col)
         if not self.selected.color == self.turn:
             self.selected = None
@@ -30,7 +37,7 @@ class Game:
             self.valid_moves = self.board.get_valid_moves(self.selected)
             return self.valid_moves
 
-    def move(self, row, col):
+    def move(self, row, col) -> bool:
         destination = self.board.get_piece(row, col)
         if self.selected and destination.color == 0 and (row, col) in self.valid_moves:
             self.board.move(self.selected, row, col)
@@ -43,8 +50,11 @@ class Game:
 
         return True
 
-    def change_turn(self):
+    def change_turn(self) -> None:
         self.turn = DARK if self.turn == LIGHT else LIGHT
+
+    def which_turn(self) -> int:
+        return self.turn
 
     def winner(self):
         return self.board.winner()

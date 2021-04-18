@@ -18,6 +18,24 @@ body {
   text-align: center;
 }
 
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  margin: 1.25em;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  background-color: black;
+  color: white;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 0.2em;
+}
+
 .notifications {
   margin: 2em;
 }
@@ -29,9 +47,17 @@ body {
   justify-content: center;
 }
 
+.possible {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: coral;
+}
+
 .board {
   display: grid;
   margin-bottom: 2em;
+  background-color: white;
   border: 1px solid black;
   grid-template-rows: repeat(8, 5em);
   grid-template-columns: repeat(8, 5em);

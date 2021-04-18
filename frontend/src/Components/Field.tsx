@@ -1,42 +1,40 @@
 import React from "react"
+import {Ifield} from "../types"
+import { useGlobalContext } from "./context";
 
-export interface field {
-  key: string,
-  value: number
-}
+function Field(field: Ifield) {
 
-function Field(field: field) {
+  const {playerColor, select} = useGlobalContext();
 
-  const {value} = field;
+  const {id, possible, value} = field;
 
   if(value === -1) {
     return (
-      <div className="field-white">
-      </div>
+      <div/>
     );
-  } else if (value === 0 ) {
+  } 
+  
+  if (playerColor === 1){
     return (
       <div className="field-black">
-      </div>
-    );
-  } else if (value === 1) {
-    return (
-      <div className="field-black">
-          <div className="white-piece"></div>
-      </div>
-    );
-  } else if (value === 3) {
-    return (
-      <div className="field-black">
-          <div className="black-piece"></div>
+          { value === 1 && <div className="white-piece" onClick={() => select(id)}></div>}
+          { value === 3 && <div className="black-piece"></div>}
       </div>
     );
   }
 
+  if (playerColor === 3) {
+    return (
+      <div className="field-black">
+          { value === 1 && <div className="white-piece"></div>}
+          { value === 3 && <div className="black-piece" onClick={() => select(id)}></div>}
+      </div>
+    );
+  }
 
   return (
-    <div 
-      className="field-black">
+    <div className="field-black">
+      {possible && <div className="possible"/>}
     </div>
   );
 

@@ -1,11 +1,15 @@
 import React from 'react'
+import { useGlobalContext } from './context';
 
 
 
 function Notifications() {
+
+  const {msg} = useGlobalContext();
+
   return (
     <div className="notifications">
-      Here we'll have any notifications
+      {msg}
     </div>
   );
 }

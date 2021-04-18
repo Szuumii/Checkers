@@ -1,10 +1,14 @@
-import React from "react"
+import React, {useContext, useEffect} from "react"
 import Header from "./Components/Header"
 import GameContainer from './Components/GameContainter'
 import Footer from './Components/Footer'
+import { AppContext } from "./Components/context"
 
 
-function App() {
+export default function App() {
+
+  const connection = useContext(AppContext);
+
   return (
     <div className="App">
       <Header/>
@@ -13,5 +17,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

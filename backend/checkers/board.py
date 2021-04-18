@@ -34,10 +34,13 @@ class Board():
         # self.board[4][3] = Piece(4, 3, LIGHT)
         # self.board[4][1] = Piece(4, 1, LIGHT)
 
-        self.board[3][6] = Piece(3, 6, DARK)
+        # self.board[3][6] = Piece(3, 6, DARK)
 
     def print_board(self) -> None:
         print(self.board)
+
+    def get_board_state(self):
+        return self.board
 
     def move(self, piece, row, col):
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
