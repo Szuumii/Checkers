@@ -21,5 +21,6 @@ export interface contextType {
   playerColor: number,
   board: Ifield[],
   join: (color: number) => void,
-  select: (key: number) => void
+  select: (id: number) => void,
+  move: (id: number) => void
 }

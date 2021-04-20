@@ -63,27 +63,42 @@ body {
   grid-template-columns: repeat(8, 5em);
 }
 
-.white-piece,
-.white-king {
+.black-piece,
+.white-piece {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.white-piece {
   width: 4.5em;
   height: 4.5em;
   border-radius: 50%;
   background-color: white;
 }
 
+.black-king,
 .white-king {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
 }
 
-.black-piece,
 .black-king {
+  background-color: white;
+}
+
+.white-king {
+  background-color: black;
+}
+
+.black-piece {
   width: 4.5em;
   height: 4.5em;
   border-radius: 50%;
   background-color: black;
-  border: solid 2px white;
-}
-
-.black-king {
+  border: solid 0.2rem white;
 }
 
 .field-black,

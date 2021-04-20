@@ -12,6 +12,9 @@ class Game:
     def show_board(self):
         self.board.print_board()
 
+    def get_board(self):
+        return self.board
+
     def get_board_state(self):
         retv = []
         for row in self.board.get_board_state():
@@ -31,9 +34,11 @@ class Game:
     def select_piece(self, row, col) -> dict:
         self.selected = self.board.get_piece(row, col)
         if not self.selected.color == self.turn:
+            # print("Wrong Selection!")
             self.selected = None
             return {}
         else:
+            # print("Right selection!")
             self.valid_moves = self.board.get_valid_moves(self.selected)
             return self.valid_moves
 
@@ -58,3 +63,7 @@ class Game:
 
     def winner(self):
         return self.board.winner()
+
+    def ai_move(self, board):
+        self.board = board
+        self.change_turn()

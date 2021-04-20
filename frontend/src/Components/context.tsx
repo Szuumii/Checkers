@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { from } from 'rxjs';
 import io from 'socket.io-client'
 import { SocketService } from './socketService';
-import {contextType, Iboard, PossibleMove} from "../types"
+import {contextType, Iboard, Ifield, PossibleMove} from "../types"
 import { InitialBoard } from './data';
+import _ from "lodash"
 
 
 const AppContext =  React.createContext({} as contextType);
@@ -16,22 +17,29 @@ const AppProvider = ({children}:any) => {
 
   const [playerColor, setPlayerColor] = useState(-1);
 
-  const [board, setBoard] = useState(InitialBoard);
+  const [board, setBoard] = useState<Ifield[]>(InitialBoard);
 
   const select = (id: number) => {
     // console.log(`Selected field ${id}`);
     let row = Math.floor(id / 8);
     let col = id % 8;
-    let newBoard = [...board];
     socket.emit('select', {row, col}, (possibleMoves: PossibleMove[]) => {
-      possibleMoves.map((tuple: PossibleMove) => { 
-        let idx = tuple[0] * 8 + tuple[1];
-        console.log(idx);
-        newBoard[idx].possible = true;
+      let newBoard = Array.from(Array(64).keys()).map((idx) => {
+        return {id: idx, possible: false, value: board[idx].value}
       })
+
+      for (let element of possibleMoves) {
+        let idx = element[0] * 8 + element[1];
+        // console.log(idx);
+        newBoard[idx].possible = true;
+      }
+      setBoard(newBoard);
     })
-    setBoard(newBoard);
   }
+
+  // useEffect(() => {
+  //   console.log(board);
+  // }, [board]);
 
   const join = (color: number) => {
     setPlayerColor(color);
@@ -42,6 +50,51 @@ const AppProvider = ({children}:any) => {
       })
       setBoard(convertedBoard);
     })
+  }
+
+  const move = (id: number) => {
+    let row = Math.floor(id / 8);
+    let col = id % 8;
+
+    socket.emit('move', {row, col}, (newBoard: Iboard) => {
+      const {board} = newBoard;
+      const convertedBoard = Array.from(Array(64).keys()).map((idx) => {
+        return {id: idx, possible: false, value: board[idx]}
+      })
+      setBoard(convertedBoard);
+    })
+
+    setMsg("Waiting for computer's move");
+
+    socket.emit('is_over', (is_over: number) => {
+      if(is_over === -1){
+        return
+      } else if (is_over === 1) {
+        alert("Light Won!")
+      } else if (is_over === 3) {
+        alert("Dark Won!")
+      }
+    })
+
+    socket.emit('computer_move', (newBoard: Iboard) => {
+      const {board} = newBoard;
+      const convertedBoard = Array.from(Array(64).keys()).map((idx) => {
+        return {id: idx, possible: false, value: board[idx]}
+      })
+      setMsg("Your turn to move");
+      setBoard(convertedBoard);
+    })
+
+    socket.emit('is_over', (is_over: number) => {
+      if(is_over === -1){
+        return
+      } else if (is_over === 1) {
+        alert("Light Won!")
+      } else if (is_over === 3) {
+        alert("Dark Won!")
+      }
+    })
+
   }
 
   useEffect(() => {
@@ -61,7 +114,8 @@ const AppProvider = ({children}:any) => {
     playerColor, 
     board,
     join,
-    select
+    select,
+    move
     }}>
     {children}
   </AppContext.Provider>
