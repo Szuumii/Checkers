@@ -1,5 +1,6 @@
 # Checkers
 Browser based checkers game with AI opponent. This is a project (exercise 4) for EARIN course on WUT. 
+Repo for other tasks available [here](https://github.com/kamieniarzk/artificial-inteligence-course).
 
 ## Run
 To run the game in linux environment: 
@@ -11,7 +12,7 @@ The game engine is based in `Python`, with the frontend written in React using `
 
 ## User interface
 Initially the user is presented with a black-white 8x8 checkerboard, the white pieces are on the bottom part of the screen and the black ones are at the top. The user is prompted with buttons to choose either the light or dark side. After hitting play, the light side gets the first move (either the user gets the move or the AI depending on initial user's choice). 
-![](images/1.jpg)
+![](images/2.png)
 
 ## AI
 The AI implemented in this game is based on min-max algorithm with alfa-beta pruning.
@@ -29,3 +30,4 @@ The AI implemented in this game is based on min-max algorithm with alfa-beta pru
 * When a piece reaches the furthest row from the player who controls that piece, it is crowned and becomes a king.
 * Kingsare limited to moving diagonally, but maymove both forward and backward. 
 * A player wins the game when the opponent cannot make a movebecause:a.all of the opponent's pieces have been capturedb.all of the opponent's pieces are blocked in
+![](images/2.png)
