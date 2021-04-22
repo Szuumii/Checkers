@@ -50,6 +50,20 @@ const AppProvider = ({children}:any) => {
       })
       setBoard(convertedBoard);
     })
+
+    console.log("Here");
+
+    if (color == 3) {
+      setMsg("Waiting for computer's move");
+      socket.emit('computer_move', (newBoard: Iboard) => {
+        const {board} = newBoard;
+        const convertedBoard = Array.from(Array(64).keys()).map((idx) => {
+          return {id: idx, possible: false, value: board[idx]}
+        })
+        setBoard(convertedBoard);
+        setMsg("Your turn to move");
+      })
+    }
   }
 
   const move = (id: number) => {

@@ -40,6 +40,9 @@ def is_over(sid):
 
     over =  games[sid].winner()
 
+    if over != None:
+        print(f'Game Over color {over} won')
+
     return -1 if over == None else over
 
 
@@ -47,10 +50,9 @@ def is_over(sid):
 def computer_move(sid):
     global games
 
-
     should_maximize = False if playerColors[sid] == LIGHT else True
 
-    value, new_board = minimax(games[sid].get_board(), 2, float('-inf'), float('inf'), should_maximize)
+    value, new_board = minimax(games[sid].get_board(), 5, float('-inf'), float('inf'), should_maximize)
     print(f"Value: {value}")
     games[sid].ai_move(new_board)
     return {"board": games[sid].get_board_state()}

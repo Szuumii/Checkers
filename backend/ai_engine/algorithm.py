@@ -12,10 +12,10 @@ def minimax(position, depth, alpha, beta, max_player):
         best_move = None
         for move in get_all_moves(position, LIGHT):
             evaluation = minimax(move, depth - 1, alpha, beta, False)[0]
-            maxEval = max(maxEval, evaluation)
-            if maxEval == evaluation:
+            if evaluation >= maxEval:
+                maxEval = evaluation
                 best_move = move
-            # print(f"Max eval is {maxEval}")
+            print(f"Max eval is {maxEval}")
             alpha = max(alpha, evaluation)
             if beta <= alpha:
                 # print("Pruned!")
@@ -27,10 +27,10 @@ def minimax(position, depth, alpha, beta, max_player):
         best_move = None
         for move in get_all_moves(position, DARK):
             evaluation = minimax(move, depth - 1, alpha, beta, True)[0]
-            minEval = min(minEval, evaluation)
-            if minEval == evaluation:
+            if evaluation <= minEval:
+                minEval = evaluation
                 best_move = move
-            # print(f"Min eval is {minEval}")
+            print(f"Min eval is {minEval}")
             beta = min(beta, evaluation)
             if beta <= alpha:
                 # print("Pruned!")

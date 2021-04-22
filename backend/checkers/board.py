@@ -31,14 +31,6 @@ class Board():
                 row.append(field)
             self.board.append(row)
 
-        # TEST CASES
-        # self.board[4][3] = Piece(4, 3, LIGHT)
-        # self.board[4][1] = Piece(4, 1, LIGHT)
-
-        self.board[3][6] = Piece(3, 6, DARK)
-        self.board[6][3] = Piece(6, 3, 0)
-        # self.board[7][2] = Piece(7, 2, 0)
-
     def print_board(self) -> None:
         print(self.board)
 
@@ -78,10 +70,10 @@ class Board():
             
 
     def winner(self):
-        # Check if pieces left has a place to move
-        if self.light_left <= 0:
+        
+        if len(self.get_all_moves(LIGHT)) == 0 or self.light_left <= 0:
             return DARK
-        elif self.dark_left <= 0:
+        elif len(self.get_all_moves(DARK)) == 0 or self.dark_left <= 0:
             return LIGHT
         else:
             return None
@@ -98,6 +90,14 @@ class Board():
                     pieces.append(piece)
 
         return pieces
+
+    def get_all_moves(self, color):
+        moves = {}
+
+        for piece in self.get_all_pieces(color):
+            moves.update(self.get_valid_moves(piece))
+
+        return moves
 
     def get_valid_moves(self, piece):
         moves = {}
