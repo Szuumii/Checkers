@@ -7,5 +7,6 @@
 
 ## Setup
 In order to set up the server you are required to have python 3 on your computer.
+This server is available only at linux operating system.
 
-If you want to run the serwer you need to run the setup.sh script
+If you want to run the server you need to run the setup.sh script

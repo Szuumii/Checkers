@@ -1,7 +1,3 @@
-import { type } from "node:os";
-import SocketIO from "socket.io";
-import { SocketService } from "./Components/socketService";
-
 export interface Ifield {
   id: number,
   possible: boolean,

@@ -27,8 +27,8 @@ function Field(field: Ifield) {
       <div className="field-black">
           { value === 1 && <div className="white-piece" onClick={() => select(id)}/>}
           { value === 2 && <div className="white-piece" onClick={() => select(id)}><div className="white-king"/></div>}
-          { value === 3 && <div className="black-piece" onClick={() => select(id)}/>}
-          { value === 4 && <div className="black-piece" onClick={() => select(id)}><div className="black-king"/></div>}
+          { value === 3 && <div className="black-piece"/>}
+          { value === 4 && <div className="black-piece"><div className="black-king"/></div>}
       </div>
     );
   }
@@ -36,8 +36,8 @@ function Field(field: Ifield) {
   if (playerColor === 3) {
     return (
       <div className="field-black">
-          { value === 1 && <div className="white-piece" onClick={() => select(id)}/>}
-          { value === 2 && <div className="white-piece" onClick={() => select(id)}><div className="white-king"/></div>}
+          { value === 1 && <div className="white-piece"/>}
+          { value === 2 && <div className="white-piece"><div className="white-king"/></div>}
           { value === 3 && <div className="black-piece" onClick={() => select(id)}/>}
           { value === 4 && <div className="black-piece" onClick={() => select(id)}><div className="black-king"/></div>}
       </div>

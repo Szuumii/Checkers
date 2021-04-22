@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { from } from 'rxjs';
 import io from 'socket.io-client'
-import { SocketService } from './socketService';
 import {contextType, Iboard, Ifield, PossibleMove} from "../types"
 import { InitialBoard } from './data';
-import _ from "lodash"
 
 
 const AppContext =  React.createContext({} as contextType);
@@ -51,9 +48,9 @@ const AppProvider = ({children}:any) => {
       setBoard(convertedBoard);
     })
 
-    console.log("Here");
-
-    if (color == 3) {
+    if (color === 1) {
+      setMsg("Your turn to move");
+    } else {
       setMsg("Waiting for computer's move");
       socket.emit('computer_move', (newBoard: Iboard) => {
         const {board} = newBoard;
@@ -113,13 +110,7 @@ const AppProvider = ({children}:any) => {
 
   useEffect(() => {
     setSocket(io("http://localhost:8000"));
-    console.log("Connected");
   }, [])
-
-  // useEffect(() => {
-  //   if(!socket) return
-
-  // }, [socket])
 
 
   return <AppContext.Provider value={{

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import Field from "./Field"
 import {Ifield} from "../types"
 import { useGlobalContext } from "./context"
@@ -6,8 +6,6 @@ import { useGlobalContext } from "./context"
 export default function Board() {
 
   const {board} = useGlobalContext();
-
-  // console.log(board);
 
   return(
     <div className="board">

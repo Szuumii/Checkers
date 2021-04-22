@@ -1,9 +1,7 @@
-import React, {useState} from "react"
-
+import React from "react"
 import Notifications from './Notifications'
 import Board from "./Board"
 import Controls from "./Controls"
-import { useGlobalContext } from "./context";
 
 export default function GameContainer() {
 

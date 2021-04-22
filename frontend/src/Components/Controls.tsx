@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import { useGlobalContext } from './context';
-import {Iboard, Ifield} from "../types"
 
 export default function Controls() {
 
-  const {socket, playerColor, join} = useGlobalContext();
+  const {playerColor, join} = useGlobalContext();
 
   const [picked, setPicked] = useState<number>(1)
 
