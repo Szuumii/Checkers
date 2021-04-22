@@ -12,7 +12,7 @@ The game engine is based in `Python`, with the frontend written in React using `
 
 ## User interface
 Initially the user is presented with a black-white 8x8 checkerboard, the white pieces are on the bottom part of the screen and the black ones are at the top. The user is prompted with buttons to choose either the light or dark side. After hitting play, the light side gets the first move (either the user gets the move or the AI depending on initial user's choice). 
-![](images/2.png)
+![](images/1.png)
 
 ## AI
 The AI implemented in this game is based on min-max algorithm with alfa-beta pruning.
