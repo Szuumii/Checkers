@@ -53,7 +53,7 @@ def computer_move(sid):
     should_maximize = False if playerColors[sid] == LIGHT else True
 
     value, new_board = minimax(games[sid].get_board(), 5, float('-inf'), float('inf'), should_maximize)
-    print(f"Value: {value}")
+    # print(f"Value: {value}")
     games[sid].ai_move(new_board)
     return {"board": games[sid].get_board_state()}
 

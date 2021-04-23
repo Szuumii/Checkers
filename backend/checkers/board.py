@@ -61,9 +61,13 @@ class Board():
             # print(f"Removing row: {element[0]} col:{element[1]}")
             if self.board[element[0]][element[1]].color == LIGHT:
                 # print("Removing LIGHT")
+                if self.board[element[0]][element[1]].king == True:
+                    self.light_kings -=1
                 self.light_left -= 1
             else:
                 # print("Removing DARK")
+                if self.board[element[0]][element[1]].king == True:
+                    self.dark_kings -=1
                 self.dark_left -= 1
             self.board[element[0]][element[1]] = Piece(
                 element[0], element[1], 0)
@@ -71,9 +75,9 @@ class Board():
 
     def winner(self):
         
-        if len(self.get_all_moves(LIGHT)) == 0 or self.light_left <= 0:
+        if len(self.get_all_moves(LIGHT)) == 0 or self.light_left <= 0 and self.light_kings <= 0:
             return DARK
-        elif len(self.get_all_moves(DARK)) == 0 or self.dark_left <= 0:
+        elif len(self.get_all_moves(DARK)) == 0 or self.dark_left <= 0 and self.dark_kings <= 0:
             return LIGHT
         else:
             return None

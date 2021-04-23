@@ -15,12 +15,11 @@ def minimax(position, depth, alpha, beta, max_player):
             if evaluation >= maxEval:
                 maxEval = evaluation
                 best_move = move
-            print(f"Max eval is {maxEval}")
             alpha = max(alpha, evaluation)
             if beta <= alpha:
                 # print("Pruned!")
                 break
-
+        # print(f"Max eval is {maxEval} for depth {depth}")
         return maxEval, best_move
     else:
         minEval = float('inf')
@@ -30,13 +29,12 @@ def minimax(position, depth, alpha, beta, max_player):
             if evaluation <= minEval:
                 minEval = evaluation
                 best_move = move
-            print(f"Min eval is {minEval}")
             beta = min(beta, evaluation)
             if beta <= alpha:
                 # print("Pruned!")
                 break
             
-
+        # print(f"Min eval is {minEval} for depth {depth}")
         return minEval, best_move
 
 def get_all_moves(board, color):
@@ -44,6 +42,7 @@ def get_all_moves(board, color):
 
     for piece in board.get_all_pieces(color):
         valid_moves = board.get_valid_moves(piece)
+        # print(f"Valid moves: {valid_moves}")
         for move, skip in valid_moves.items():
             temp_board = deepcopy(board)
             temp_piece = temp_board.get_piece(piece.row, piece.col)
