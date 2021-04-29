@@ -4,7 +4,7 @@ Repo for other tasks available [here](https://github.com/kamieniarzk/artificial-
 
 ## Run
 To run the game in linux environment: 
-* clone this repo, then go to the `backend` directory and execute `./start.sh`. This will start the `Python` server on port 8000. 
+* clone this repo, then go to the `backend` directory and execute `./setyp.sh`. This will start the `Python` server on port 8000. 
 * go to the `frontend` directory and execute the following commands `npm install` and then `npm start` (make sure you have `node` installed, if not download from [this website](https://nodejs.org/en/))
 
 ## Technology stack
